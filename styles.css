@@ -61,6 +61,15 @@ select {
   border: 1px solid #b7c3d8;
   border-radius: 8px;
   min-width: 120px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: none;
+  border-color: #0b3b69;
+  box-shadow: 0 0 0 3px rgba(11, 59, 105, 0.2);
 }
 
 input.short {
@@ -79,6 +88,7 @@ input.short {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.7rem;
   margin-top: 1rem;
 }
@@ -112,6 +122,33 @@ button.secondary:hover {
   font-weight: 600;
   background: #eef2ff;
   border: 1px solid #c7d2fe;
+}
+
+.result-good {
+  background: #ecfdf3;
+  border-color: #a7f3d0;
+}
+
+.result-mid {
+  background: #fff9e9;
+  border-color: #fde68a;
+}
+
+.result-low {
+  background: #fff0ee;
+  border-color: #fecaca;
+}
+
+.solutions h2 {
+  margin-top: 0;
+}
+
+.solutions p {
+  margin-bottom: 0.2rem;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (max-width: 600px) {

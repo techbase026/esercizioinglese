@@ -15,19 +15,19 @@
       <h2>Parte A - Completa con <code>was / were</code> e il verbo in <code>-ing</code></h2>
       <ol>
         <li>
-          I <input id="a1" type="text" autocomplete="off" /> (watch) TV at 9 p.m.
+          I <input id="a1" data-part="A" type="text" autocomplete="off" /> (watch) TV at 9 p.m.
         </li>
         <li>
-          They <input id="a2" type="text" autocomplete="off" /> (play) in the park.
+          They <input id="a2" data-part="A" type="text" autocomplete="off" /> (play) in the park.
         </li>
         <li>
-          She <input id="a3" type="text" autocomplete="off" /> (not / study) for the test.
+          She <input id="a3" data-part="A" type="text" autocomplete="off" /> (not / study) for the test.
         </li>
         <li>
-          We <input id="a4" type="text" autocomplete="off" /> (have) dinner.
+          We <input id="a4" data-part="A" type="text" autocomplete="off" /> (have) dinner.
         </li>
         <li>
-          <input id="a5" type="text" autocomplete="off" /> you <input id="a6" type="text" autocomplete="off" /> (sleep) at midnight?
+          <input id="a5" data-part="A" type="text" autocomplete="off" /> you <input id="a6" data-part="A" type="text" autocomplete="off" /> (sleep) at midnight?
         </li>
       </ol>
     </section>
@@ -37,15 +37,15 @@
       <ol>
         <li>
           She was reading a book. -> (negativa)
-          <input id="b1" type="text" autocomplete="off" />
+          <input id="b1" data-part="B" type="text" autocomplete="off" />
         </li>
         <li>
           They were playing football. -> (interrogativa)
-          <input id="b2" type="text" autocomplete="off" />
+          <input id="b2" data-part="B" type="text" autocomplete="off" />
         </li>
         <li>
           I wasn't working. -> (affermativa)
-          <input id="b3" type="text" autocomplete="off" />
+          <input id="b3" data-part="B" type="text" autocomplete="off" />
         </li>
       </ol>
     </section>
@@ -55,7 +55,7 @@
       <ol>
         <li>
           While I
-          <select id="c1">
+          <select id="c1" data-part="C">
             <option value="">-- scegli --</option>
             <option value="was eating">was eating</option>
             <option value="ate">ate</option>
@@ -64,7 +64,7 @@
         </li>
         <li>
           They
-          <select id="c2">
+          <select id="c2" data-part="C">
             <option value="">-- scegli --</option>
             <option value="was studying">was studying</option>
             <option value="were studying">were studying</option>
@@ -76,10 +76,36 @@
 
     <section class="actions">
       <button id="checkBtn">Controlla risposte</button>
+      <button id="checkA" type="button">Verifica Parte A</button>
+      <button id="checkB" type="button">Verifica Parte B</button>
+      <button id="checkC" type="button">Verifica Parte C</button>
+      <button id="showBtn" class="secondary" type="button" aria-controls="solutions" aria-expanded="false">Mostra soluzioni</button>
       <button id="resetBtn" class="secondary">Reset</button>
     </section>
 
     <section id="result" class="result" aria-live="polite"></section>
+    <section id="solutions" class="card solutions hidden">
+      <h2>Soluzioni</h2>
+      <p><strong>Parte A</strong></p>
+      <ol>
+        <li>I was watching TV at 9 p.m.</li>
+        <li>They were playing in the park.</li>
+        <li>She was not studying / wasn't studying for the test.</li>
+        <li>We were having dinner.</li>
+        <li>Were you sleeping at midnight?</li>
+      </ol>
+      <p><strong>Parte B</strong></p>
+      <ol>
+        <li>She was not reading a book. / She wasn't reading a book.</li>
+        <li>Were they playing football?</li>
+        <li>I was working.</li>
+      </ol>
+      <p><strong>Parte C</strong></p>
+      <ol>
+        <li>While I <strong>was eating</strong> dinner, the phone rang.</li>
+        <li>They <strong>were studying</strong> at 8 p.m.</li>
+      </ol>
+    </section>
   </main>
 
   <script src="script.js"></script>
