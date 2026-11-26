@@ -1,115 +1,1186 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Past Continuous - Esercizio Interattivo</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU Verification Prep – English for IT</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --accent: #3b82f6;
+      --accent2: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3a4f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a5f, #0f172a);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--accent); }
+    .level-badge {
+      background: var(--accent);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    nav button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    nav button:hover, nav button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      margin: 1.2rem 0 0.5rem;
+      color: var(--accent2);
+    }
+    .intro {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .exercise-box {
+      background: #0f172a;
+      border-left: 4px solid var(--accent);
+      padding: 1.2rem 1.4rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+    .exercise-box p, .exercise-box li {
+      margin-bottom: 0.6rem;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea:focus, input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    button.primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    button.primary:hover { background: #2563eb; }
+    button.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    button.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    button.success {
+      background: var(--accent2);
+      color: white;
+      border: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      display: none;
+    }
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent2);
+      color: #6ee7b7;
+      display: block;
+    }
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--danger);
+      color: #fca5a5;
+      display: block;
+    }
+    .feedback .explanation {
+      margin-top: 0.5rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .options label {
+      display: block;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .options label:hover { border-color: var(--accent); }
+    .options input { margin-right: 0.6rem; }
+    .score-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .progress {
+      height: 6px;
+      background: #1e293b;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.4s;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; }
+    }
+    .level-select {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .level-select button {
+      flex: 1;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .level-select button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .topic-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .topic-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .topic-card .icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+    .topic-card h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .topic-card p { font-size: 0.8rem; color: var(--muted); }
+    .hidden { display: none !important; }
+    .reading-text {
+      background: #0f172a;
+      padding: 1.3rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      border: 1px solid var(--border);
+    }
+    .reading-text strong { color: var(--accent2); }
+    .sim-header {
+      background: linear-gradient(90deg, #7c3aed, #2563eb);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .sim-header h2 { color: white; margin: 0; }
+    .timer {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--warning);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
 </head>
 <body>
-  <main class="container">
-    <h1>Past Continuous</h1>
-    <p class="subtitle">Esercizio interattivo: affermativa, negativa, interrogativa</p>
+  <header>
+    <h1>CPU <span>Verification Prep</span> – English for IT</h1>
+    <div style="display:flex; gap:1rem; align-items:center;">
+      <span class="level-badge" id="currentLevel">Level: Intermediate</span>
+      <nav id="mainNav">
+        <button data-view="home" class="active">Home</button>
+        <button data-view="diagnostic">Diagnostic</button>
+        <button data-view="practice">Practice</button>
+        <button data-view="simulation">Full Simulation</button>
+      </nav>
+    </div>
+  </header>
 
-    <section class="card">
-      <h2>Parte A - Completa con <code>was / were</code> e il verbo in <code>-ing</code></h2>
-      <ol>
-        <li>
-          I <input id="a1" data-part="A" type="text" autocomplete="off" /> (watch) TV at 9 p.m.
-        </li>
-        <li>
-          They <input id="a2" data-part="A" type="text" autocomplete="off" /> (play) in the park.
-        </li>
-        <li>
-          She <input id="a3" data-part="A" type="text" autocomplete="off" /> (not / study) for the test.
-        </li>
-        <li>
-          We <input id="a4" data-part="A" type="text" autocomplete="off" /> (have) dinner.
-        </li>
-        <li>
-          <input id="a5" data-part="A" type="text" autocomplete="off" /> you <input id="a6" data-part="A" type="text" autocomplete="off" /> (sleep) at midnight?
-        </li>
-      </ol>
+  <main>
+    <!-- HOME -->
+    <section id="view-home">
+      <div class="card">
+        <h2>Welcome to your CPU English Training</h2>
+        <p class="intro">
+          This interactive site prepares you for a Reading Comprehension verification on <strong>The CPU (Central Processing Unit)</strong>.
+          Exercises change every time you load them. Choose a level, take a short diagnostic, then practice by topic or run a full simulation.
+        </p>
+        <div class="level-select" id="levelSelect">
+          <button data-level="beginner">Beginner</button>
+          <button data-level="intermediate" class="active">Intermediate</button>
+          <button data-level="advanced">Advanced</button>
+        </div>
+        <div class="topic-grid">
+          <div class="topic-card" data-topic="reading">
+            <div class="icon">📖</div>
+            <h4>Reading Comprehension</h4>
+            <p>Technical texts + questions</p>
+          </div>
+          <div class="topic-card" data-topic="truefalse">
+            <div class="icon">✅</div>
+            <h4>True / False</h4>
+            <p>Correct the false statements</p>
+          </div>
+          <div class="topic-card" data-topic="vocabulary">
+            <div class="icon">📚</div>
+            <h4>Vocabulary</h4>
+            <p>CPU terms & definitions</p>
+          </div>
+          <div class="topic-card" data-topic="passive">
+            <div class="icon">🔄</div>
+            <h4>Passive Voice</h4>
+            <p>Active → Passive (5 tenses)</p>
+          </div>
+          <div class="topic-card" data-topic="relative">
+            <div class="icon">🔗</div>
+            <h4>Relative Clauses</h4>
+            <p>who / which / that</p>
+          </div>
+          <div class="topic-card" data-topic="make">
+            <div class="icon">⚡</div>
+            <h4>Make + Object</h4>
+            <p>adjective / infinitive</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>How to use this site</h2>
+        <ul style="padding-left:1.3rem; color:var(--muted);">
+          <li>Select your level (Beginner / Intermediate / Advanced).</li>
+          <li>Start with the <strong>Diagnostic</strong> to identify weak areas.</li>
+          <li>Practice one topic at a time – answers are checked immediately with explanations.</li>
+          <li>When ready, take the <strong>Full Simulation</strong> (no help, timed feel).</li>
+          <li>Exercises are randomized so you can repeat them without memorizing the exact questions.</li>
+        </ul>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Parte B - Trasforma le frasi</h2>
-      <ol>
-        <li>
-          She was reading a book. -> (negativa)
-          <input id="b1" data-part="B" type="text" autocomplete="off" />
-        </li>
-        <li>
-          They were playing football. -> (interrogativa)
-          <input id="b2" data-part="B" type="text" autocomplete="off" />
-        </li>
-        <li>
-          I wasn't working. -> (affermativa)
-          <input id="b3" data-part="B" type="text" autocomplete="off" />
-        </li>
-      </ol>
+    <!-- DIAGNOSTIC -->
+    <section id="view-diagnostic" class="hidden">
+      <div class="card">
+        <h2>Diagnostic Test</h2>
+        <p class="intro">Answer the following questions. This is not graded strictly – it helps identify which areas need more practice.</p>
+        <div id="diagnosticContent"></div>
+        <div class="btn-row">
+          <button class="primary" id="checkDiagnostic">Check answers</button>
+          <button class="secondary" id="resetDiagnostic">Reset</button>
+        </div>
+        <div id="diagnosticFeedback" class="feedback"></div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Parte C - Scegli la forma corretta</h2>
-      <ol>
-        <li>
-          While I
-          <select id="c1" data-part="C">
-            <option value="">-- scegli --</option>
-            <option value="was eating">was eating</option>
-            <option value="ate">ate</option>
-          </select>
-          dinner, the phone rang.
-        </li>
-        <li>
-          They
-          <select id="c2" data-part="C">
-            <option value="">-- scegli --</option>
-            <option value="was studying">was studying</option>
-            <option value="were studying">were studying</option>
-          </select>
-          at 8 p.m.
-        </li>
-      </ol>
+    <!-- PRACTICE -->
+    <section id="view-practice" class="hidden">
+      <div class="card">
+        <div class="score-bar">
+          <span id="practiceTopicTitle">Practice</span>
+          <span id="practiceScore">Score: 0 / 0</span>
+        </div>
+        <div class="progress"><div class="progress-fill" id="practiceProgress"></div></div>
+        <div id="practiceContent"></div>
+        <div class="btn-row">
+          <button class="primary" id="checkPractice">Check answer</button>
+          <button class="secondary" id="nextPractice">Next exercise</button>
+          <button class="secondary" id="backToTopics">← Back to topics</button>
+        </div>
+        <div id="practiceFeedback" class="feedback"></div>
+      </div>
     </section>
 
-    <section class="actions">
-      <button id="checkBtn">Controlla risposte</button>
-      <button id="checkA" type="button">Verifica Parte A</button>
-      <button id="checkB" type="button">Verifica Parte B</button>
-      <button id="checkC" type="button">Verifica Parte C</button>
-      <button id="showBtn" class="secondary" type="button" aria-controls="solutions" aria-expanded="false">Mostra soluzioni</button>
-      <button id="resetBtn" class="secondary">Reset</button>
-    </section>
-
-    <section id="result" class="result" aria-live="polite"></section>
-    <section id="solutions" class="card solutions hidden">
-      <h2>Soluzioni</h2>
-      <p><strong>Parte A</strong></p>
-      <ol>
-        <li>I was watching TV at 9 p.m.</li>
-        <li>They were playing in the park.</li>
-        <li>She was not studying / wasn't studying for the test.</li>
-        <li>We were having dinner.</li>
-        <li>Were you sleeping at midnight?</li>
-      </ol>
-      <p><strong>Parte B</strong></p>
-      <ol>
-        <li>She was not reading a book. / She wasn't reading a book.</li>
-        <li>Were they playing football?</li>
-        <li>I was working.</li>
-      </ol>
-      <p><strong>Parte C</strong></p>
-      <ol>
-        <li>While I <strong>was eating</strong> dinner, the phone rang.</li>
-        <li>They <strong>were studying</strong> at 8 p.m.</li>
-      </ol>
+    <!-- SIMULATION -->
+    <section id="view-simulation" class="hidden">
+      <div class="sim-header">
+        <h2>Full Verification Simulation</h2>
+        <p style="margin:0.4rem 0 0; opacity:0.9;">No help • Mixed skills • Score out of 100</p>
+      </div>
+      <div class="card">
+        <div class="score-bar">
+          <span class="timer" id="simTimer">Ready</span>
+          <span id="simProgressText">Question 1 of 12</span>
+        </div>
+        <div id="simulationContent"></div>
+        <div class="btn-row">
+          <button class="primary" id="simNext">Next</button>
+          <button class="secondary" id="simFinish" class="hidden">Finish & Grade</button>
+        </div>
+        <div id="simFinalResult" class="hidden"></div>
+      </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <footer>
+    CPU Verification Prep • Technical English for IT • Exercises randomized each time
+  </footer>
+
+  <script>
+    // ========== DATA BANKS (randomized) ==========
+    const LEVEL = { beginner: 0, intermediate: 1, advanced: 2 };
+    let currentLevel = 'intermediate';
+    let currentTopic = null;
+    let practiceScore = { correct: 0, total: 0 };
+    let currentExercise = null;
+
+    // --- Reading texts (different each time) ---
+    const readingTexts = [
+      {
+        title: "The Fetch-Decode-Execute Cycle",
+        text: `The Central Processing Unit (CPU) is the primary component of a computer that performs most of the processing inside the system. Every instruction that a program needs to execute is handled by the CPU through a continuous process known as the fetch-decode-execute cycle. First, the instruction is fetched from the main memory (RAM) and transferred into the CPU. Then the Control Unit decodes the instruction to determine what operation is required. Finally, the Arithmetic Logic Unit (ALU) executes the instruction. Modern CPUs contain multiple cores, which allow several instructions to be processed simultaneously. The speed of this cycle is measured in gigahertz (GHz) and is one of the main factors that influence overall system performance.`,
+        questions: [
+          { q: "What is the name of the continuous process performed by the CPU?", a: "fetch-decode-execute cycle" },
+          { q: "Which unit decodes the instruction?", a: "Control Unit" },
+          { q: "What does ALU stand for?", a: "Arithmetic Logic Unit" },
+          { q: "Why do modern CPUs have multiple cores?", a: "to process several instructions simultaneously" }
+        ]
+      },
+      {
+        title: "Factors Affecting CPU Performance",
+        text: `Several factors determine how efficiently a CPU can process data. Clock speed, measured in gigahertz, indicates how many cycles the processor can complete per second. A higher clock speed generally means faster performance, although this is not the only criterion. Cache memory is a small, extremely fast type of memory located inside the CPU itself; it stores frequently used data and instructions so that the processor does not have to wait for slower RAM. The number of cores is another crucial factor: multi-core processors can handle multiple tasks at the same time. Finally, the architecture of the CPU (for example, 32-bit or 64-bit) and the presence of technologies such as hyper-threading also influence performance. Overheating can reduce efficiency, which is why effective cooling systems are essential.`,
+        questions: [
+          { q: "What unit is used to measure clock speed?", a: "gigahertz / GHz" },
+          { q: "Where is cache memory located?", a: "inside the CPU" },
+          { q: "What can reduce CPU efficiency?", a: "overheating" },
+          { q: "Name two factors that affect CPU performance.", a: "clock speed, number of cores, cache, architecture (any two)" }
+        ]
+      },
+      {
+        title: "Registers and the Control Unit",
+        text: `Inside the CPU there are several small storage locations called registers. Registers hold data and instructions that are being processed at extremely high speed. The Program Counter (PC) stores the address of the next instruction to be fetched, while the Accumulator temporarily holds the results of calculations performed by the ALU. The Control Unit (CU) acts as the coordinator of the entire process: it sends control signals to other components, manages the flow of data, and ensures that instructions are executed in the correct order. Without the Control Unit, the CPU would not be able to interpret the instructions fetched from memory. Modern CPUs also include specialized registers for floating-point operations and vector processing.`,
+        questions: [
+          { q: "What do registers store?", a: "data and instructions being processed" },
+          { q: "What does the Program Counter hold?", a: "the address of the next instruction" },
+          { q: "What is the role of the Control Unit?", a: "coordinates the process / sends control signals / manages data flow" },
+          { q: "Why is the Control Unit essential?", a: "without it the CPU could not interpret instructions" }
+        ]
+      }
+    ];
+
+    // --- True/False statements ---
+    const trueFalseBank = [
+      { statement: "The ALU is responsible for decoding instructions.", correct: false, correction: "The Control Unit is responsible for decoding instructions. The ALU performs arithmetic and logic operations." },
+      { statement: "Cache memory is slower than RAM.", correct: false, correction: "Cache memory is faster than RAM because it is located closer to the CPU cores." },
+      { statement: "A dual-core processor can execute two instructions at the same time.", correct: true, correction: "" },
+      { statement: "Clock speed is measured in megabytes per second.", correct: false, correction: "Clock speed is measured in gigahertz (GHz) or megahertz (MHz)." },
+      { statement: "Registers are larger than the main memory.", correct: false, correction: "Registers are much smaller than main memory but extremely fast." },
+      { statement: "The fetch-decode-execute cycle is performed by the GPU.", correct: false, correction: "The fetch-decode-execute cycle is performed by the CPU." },
+      { statement: "Hyper-threading allows a single core to handle multiple threads.", correct: true, correction: "" },
+      { statement: "The Program Counter stores the result of the last calculation.", correct: false, correction: "The Program Counter stores the address of the next instruction to be fetched. The Accumulator stores calculation results." },
+      { statement: "Overheating can force a CPU to reduce its clock speed.", correct: true, correction: "" },
+      { statement: "A 64-bit architecture can address more memory than a 32-bit architecture.", correct: true, correction: "" }
+    ];
+
+    // --- Vocabulary ---
+    const vocabBank = [
+      { term: "ALU", def: "Arithmetic Logic Unit – performs calculations and logical comparisons" },
+      { term: "Control Unit", def: "Part of the CPU that decodes instructions and coordinates components" },
+      { term: "Register", def: "Small, ultra-fast storage location inside the CPU" },
+      { term: "Cache", def: "High-speed memory located on the CPU chip that stores frequently used data" },
+      { term: "Clock speed", def: "The number of cycles a processor can perform per second, measured in GHz" },
+      { term: "Core", def: "An independent processing unit within a multi-core CPU" },
+      { term: "Fetch", def: "The stage in which an instruction is retrieved from memory" },
+      { term: "Pipeline", def: "A technique that allows multiple instructions to be processed in overlapping stages" },
+      { term: "Bus", def: "A communication pathway that transfers data between components" },
+      { term: "Overclocking", def: "Running a CPU at a higher speed than its official specification" },
+      { term: "Thermal throttling", def: "Automatic reduction of clock speed to prevent overheating" },
+      { term: "Instruction set", def: "The complete collection of commands that a CPU can understand and execute" }
+    ];
+
+    // --- Passive Voice sentences ---
+    const passiveBank = [
+      { active: "The CPU executes millions of instructions every second.", tense: "Present Simple", passive: "Millions of instructions are executed by the CPU every second." },
+      { active: "Engineers designed a new multi-core architecture last year.", tense: "Past Simple", passive: "A new multi-core architecture was designed by engineers last year." },
+      { active: "Researchers have improved cache efficiency significantly.", tense: "Present Perfect", passive: "Cache efficiency has been improved significantly by researchers." },
+      { active: "The next generation of processors will support advanced AI instructions.", tense: "Future Simple", passive: "Advanced AI instructions will be supported by the next generation of processors." },
+      { active: "The cooling system is protecting the CPU from overheating.", tense: "Present Continuous", passive: "The CPU is being protected from overheating by the cooling system." },
+      { active: "The Control Unit decodes every instruction.", tense: "Present Simple", passive: "Every instruction is decoded by the Control Unit." },
+      { active: "Technicians installed the new heatsink yesterday.", tense: "Past Simple", passive: "The new heatsink was installed by technicians yesterday." },
+      { active: "Manufacturers have reduced power consumption in recent years.", tense: "Present Perfect", passive: "Power consumption has been reduced by manufacturers in recent years." },
+      { active: "Future CPUs will integrate more specialized cores.", tense: "Future Simple", passive: "More specialized cores will be integrated by future CPUs." },
+      { active: "The system is currently monitoring the temperature of the cores.", tense: "Present Continuous", passive: "The temperature of the cores is currently being monitored by the system." }
+    ];
+
+    // --- Relative Clauses ---
+    const relativeBank = [
+      { sentence: "The engineer _____ designed the new architecture won an award.", options: ["who", "which", "that"], correct: "who", note: "who refers to people" },
+      { sentence: "The register _____ stores the next instruction address is called the Program Counter.", options: ["who", "which", "that"], correct: "which/that", note: "which or that for things" },
+      { sentence: "Cache memory is a type of memory _____ is located on the CPU chip.", options: ["who", "which", "that"], correct: "which/that", note: "which or that for things" },
+      { sentence: "The technician _____ fixed the overheating problem is very experienced.", options: ["who", "which", "that"], correct: "who", note: "who for people" },
+      { sentence: "The bus _____ transfers data between the CPU and RAM is called the system bus.", options: ["who", "which", "that"], correct: "which/that", note: "which or that" },
+      { sentence: "Processors _____ support hyper-threading can handle more threads.", options: ["who", "which", "that"], correct: "which/that", note: "which or that" },
+      { sentence: "The company _____ developed this CPU is based in Taiwan.", options: ["who", "which", "that"], correct: "which/that", note: "which or that for companies/things" },
+      { sentence: "Students _____ understand the fetch-decode-execute cycle usually score higher.", options: ["who", "which", "that"], correct: "who", note: "who for people" }
+    ];
+
+    // --- Make + object structures ---
+    const makeBank = [
+      { prompt: "Rewrite using 'make + object + adjective': The high temperature caused the system to become unstable.", answer: "The high temperature made the system unstable." },
+      { prompt: "Rewrite using 'make + object + infinitive': The new design forced the engineers to redesign the cooling system.", answer: "The new design made the engineers redesign the cooling system." },
+      { prompt: "Rewrite using 'make + object + adjective': Better cache management improved the performance of the processor.", answer: "Better cache management made the performance of the processor better. / made the processor more efficient." },
+      { prompt: "Rewrite using 'make + object + infinitive': The error message compelled the user to restart the computer.", answer: "The error message made the user restart the computer." },
+      { prompt: "Rewrite using 'make + object + adjective': Overclocking caused the CPU to become extremely hot.", answer: "Overclocking made the CPU extremely hot." },
+      { prompt: "Rewrite using 'make + object + infinitive': The teacher required the students to explain the role of the ALU.", answer: "The teacher made the students explain the role of the ALU." },
+      { prompt: "Rewrite using 'make + object + adjective': The upgrade rendered the old motherboard incompatible.", answer: "The upgrade made the old motherboard incompatible." },
+      { prompt: "Rewrite using 'make + object + infinitive': The documentation helped the technician understand the architecture.", answer: "The documentation made the technician understand the architecture." }
+    ];
+
+    // ========== UTILS ==========
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    function pick(arr, n = 1) {
+      return shuffle(arr).slice(0, n);
+    }
+    function normalize(str) {
+      return str.toLowerCase().trim().replace(/[.,;:!?]/g, '');
+    }
+    function approxMatch(user, correct) {
+      const u = normalize(user);
+      const c = normalize(correct);
+      if (u === c) return true;
+      // allow partial for longer answers
+      if (c.includes(u) && u.length > 4) return true;
+      if (u.includes(c) && c.length > 4) return true;
+      // split alternatives
+      const alts = correct.split('/').map(s => normalize(s));
+      return alts.some(a => u === a || (a.includes(u) && u.length > 3));
+    }
+
+    // ========== NAVIGATION ==========
+    document.querySelectorAll('#mainNav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        showView(btn.dataset.view);
+      });
+    });
+
+    function showView(name) {
+      document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+      document.getElementById('view-' + name).classList.remove('hidden');
+      if (name === 'diagnostic') loadDiagnostic();
+      if (name === 'simulation') startSimulation();
+      if (name === 'home') {
+        document.getElementById('view-practice').classList.add('hidden');
+      }
+    }
+
+    // Level selection
+    document.querySelectorAll('#levelSelect button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#levelSelect button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLevel = btn.dataset.level;
+        document.getElementById('currentLevel').textContent = 'Level: ' + currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1);
+      });
+    });
+
+    // Topic cards
+    document.querySelectorAll('.topic-card').forEach(card => {
+      card.addEventListener('click', () => {
+        currentTopic = card.dataset.topic;
+        practiceScore = { correct: 0, total: 0 };
+        updatePracticeScore();
+        document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
+        document.querySelector('#mainNav button[data-view="practice"]').classList.add('active');
+        showView('practice');
+        loadPracticeExercise();
+      });
+    });
+
+    document.getElementById('backToTopics').addEventListener('click', () => {
+      showView('home');
+      document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
+      document.querySelector('#mainNav button[data-view="home"]').classList.add('active');
+    });
+
+    // ========== DIAGNOSTIC ==========
+    function loadDiagnostic() {
+      const container = document.getElementById('diagnosticContent');
+      container.innerHTML = '';
+      document.getElementById('diagnosticFeedback').className = 'feedback';
+      document.getElementById('diagnosticFeedback').style.display = 'none';
+
+      // 1 vocab
+      const v = pick(vocabBank, 1)[0];
+      // 1 true/false
+      const tf = pick(trueFalseBank, 1)[0];
+      // 1 passive
+      const p = pick(passiveBank, 1)[0];
+      // 1 relative
+      const r = pick(relativeBank, 1)[0];
+      // 1 make
+      const m = pick(makeBank, 1)[0];
+      // short reading
+      const rt = pick(readingTexts, 1)[0];
+
+      container.innerHTML = `
+        <div class="exercise-box">
+          <h3>1. Vocabulary</h3>
+          <p>What does <strong>${v.term}</strong> mean in the context of a CPU?</p>
+          <input type="text" id="diag1" placeholder="Your definition...">
+        </div>
+        <div class="exercise-box">
+          <h3>2. True / False</h3>
+          <p>${tf.statement}</p>
+          <div class="options">
+            <label><input type="radio" name="diag2" value="true"> True</label>
+            <label><input type="radio" name="diag2" value="false"> False</label>
+          </div>
+          <p style="margin-top:0.6rem; font-size:0.9rem; color:var(--muted);">If false, write the correction below:</p>
+          <input type="text" id="diag2corr" placeholder="Correction (if false)...">
+        </div>
+        <div class="exercise-box">
+          <h3>3. Passive Voice (${p.tense})</h3>
+          <p>Rewrite in the passive: <em>${p.active}</em></p>
+          <input type="text" id="diag3" placeholder="Passive sentence...">
+        </div>
+        <div class="exercise-box">
+          <h3>4. Relative Clause</h3>
+          <p>${r.sentence.replace('_____', '________')}</p>
+          <div class="options" id="diag4opts"></div>
+        </div>
+        <div class="exercise-box">
+          <h3>5. Make structure</h3>
+          <p>${m.prompt}</p>
+          <input type="text" id="diag5" placeholder="Your sentence...">
+        </div>
+        <div class="exercise-box">
+          <h3>6. Short Reading</h3>
+          <div class="reading-text"><strong>${rt.title}</strong><br><br>${rt.text}</div>
+          <p>${rt.questions[0].q}</p>
+          <input type="text" id="diag6" placeholder="Your answer...">
+        </div>
+      `;
+
+      // relative options
+      const opts = document.getElementById('diag4opts');
+      r.options.forEach(o => {
+        opts.innerHTML += `<label><input type="radio" name="diag4" value="${o}"> ${o}</label>`;
+      });
+
+      // store answers for checking
+      window._diagAnswers = { v, tf, p, r, m, rt };
+    }
+
+    document.getElementById('checkDiagnostic').addEventListener('click', () => {
+      const a = window._diagAnswers;
+      let feedback = [];
+      let score = 0;
+
+      // 1
+      const u1 = document.getElementById('diag1').value;
+      if (approxMatch(u1, a.v.def) || normalize(u1).includes(normalize(a.v.term.toLowerCase()))) {
+        score++; feedback.push('1. Vocabulary: Correct');
+      } else {
+        feedback.push(`1. Vocabulary: Expected something like “${a.v.def}”`);
+      }
+
+      // 2
+      const u2 = document.querySelector('input[name="diag2"]:checked')?.value;
+      const corr = document.getElementById('diag2corr').value;
+      if (u2 === String(a.tf.correct)) {
+        if (a.tf.correct || approxMatch(corr, a.tf.correction) || corr.length > 10) {
+          score++; feedback.push('2. True/False: Correct');
+        } else {
+          feedback.push(`2. True/False: You chose correctly that it is false, but the correction should be: ${a.tf.correction}`);
+        }
+      } else {
+        feedback.push(`2. True/False: The statement is ${a.tf.correct ? 'TRUE' : 'FALSE'}. ${a.tf.correction}`);
+      }
+
+      // 3
+      const u3 = document.getElementById('diag3').value;
+      if (approxMatch(u3, a.p.passive)) {
+        score++; feedback.push('3. Passive: Correct');
+      } else {
+        feedback.push(`3. Passive: Model answer → “${a.p.passive}”`);
+      }
+
+      // 4
+      const u4 = document.querySelector('input[name="diag4"]:checked')?.value;
+      if (u4 && (a.r.correct.includes(u4) || u4 === a.r.correct)) {
+        score++; feedback.push('4. Relative: Correct');
+      } else {
+        feedback.push(`4. Relative: Correct answer is “${a.r.correct}” (${a.r.note})`);
+      }
+
+      // 5
+      const u5 = document.getElementById('diag5').value;
+      if (approxMatch(u5, a.m.answer) || normalize(u5).includes('made')) {
+        score++; feedback.push('5. Make structure: Good');
+      } else {
+        feedback.push(`5. Make structure: Model → “${a.m.answer}”`);
+      }
+
+      // 6
+      const u6 = document.getElementById('diag6').value;
+      if (approxMatch(u6, a.rt.questions[0].a)) {
+        score++; feedback.push('6. Reading: Correct');
+      } else {
+        feedback.push(`6. Reading: Possible answer → “${a.rt.questions[0].a}”`);
+      }
+
+      const fb = document.getElementById('diagnosticFeedback');
+      fb.className = 'feedback ' + (score >= 4 ? 'correct' : 'incorrect');
+      fb.innerHTML = `<strong>Diagnostic score: ${score}/6</strong><br><br>` + feedback.map(f => `• ${f}`).join('<br>');
+      fb.style.display = 'block';
+    });
+
+    document.getElementById('resetDiagnostic').addEventListener('click', loadDiagnostic);
+
+    // ========== PRACTICE ==========
+    function updatePracticeScore() {
+      document.getElementById('practiceScore').textContent = `Score: ${practiceScore.correct} / ${practiceScore.total}`;
+      const pct = practiceScore.total ? (practiceScore.correct / practiceScore.total * 100) : 0;
+      document.getElementById('practiceProgress').style.width = pct + '%';
+    }
+
+    function loadPracticeExercise() {
+      const content = document.getElementById('practiceContent');
+      const fb = document.getElementById('practiceFeedback');
+      fb.className = 'feedback';
+      fb.style.display = 'none';
+      document.getElementById('checkPractice').style.display = 'inline-block';
+
+      const titles = {
+        reading: 'Reading Comprehension',
+        truefalse: 'True / False',
+        vocabulary: 'Vocabulary',
+        passive: 'Passive Voice',
+        relative: 'Defining Relative Clauses',
+        make: 'Make + Object Structures'
+      };
+      document.getElementById('practiceTopicTitle').textContent = titles[currentTopic] || 'Practice';
+
+      if (currentTopic === 'reading') {
+        const rt = pick(readingTexts, 1)[0];
+        currentExercise = { type: 'reading', data: rt };
+        const qs = rt.questions.map((q, i) => `
+          <p><strong>Q${i+1}.</strong> ${q.q}</p>
+          <input type="text" id="pracQ${i}" placeholder="Your answer...">
+        `).join('');
+        content.innerHTML = `
+          <div class="reading-text"><strong>${rt.title}</strong><br><br>${rt.text}</div>
+          ${qs}
+        `;
+      }
+      else if (currentTopic === 'truefalse') {
+        const tf = pick(trueFalseBank, 1)[0];
+        currentExercise = { type: 'truefalse', data: tf };
+        content.innerHTML = `
+          <div class="exercise-box">
+            <p>${tf.statement}</p>
+            <div class="options">
+              <label><input type="radio" name="pracTF" value="true"> True</label>
+              <label><input type="radio" name="pracTF" value="false"> False</label>
+            </div>
+            <p style="margin-top:0.8rem; color:var(--muted); font-size:0.9rem;">If the statement is false, write the corrected version:</p>
+            <textarea id="pracCorr" rows="2" placeholder="Correction..."></textarea>
+          </div>
+        `;
+      }
+      else if (currentTopic === 'vocabulary') {
+        const items = pick(vocabBank, currentLevel === 'beginner' ? 3 : 4);
+        currentExercise = { type: 'vocabulary', data: items };
+        content.innerHTML = items.map((v, i) => `
+          <div class="exercise-box">
+            <p>Define: <strong>${v.term}</strong></p>
+            <input type="text" id="pracV${i}" placeholder="Definition...">
+          </div>
+        `).join('');
+      }
+      else if (currentTopic === 'passive') {
+        const items = pick(passiveBank, currentLevel === 'beginner' ? 2 : 3);
+        currentExercise = { type: 'passive', data: items };
+        content.innerHTML = items.map((p, i) => `
+          <div class="exercise-box">
+            <p><em>${p.tense}</em></p>
+            <p>Active: ${p.active}</p>
+            <input type="text" id="pracP${i}" placeholder="Passive form...">
+          </div>
+        `).join('');
+      }
+      else if (currentTopic === 'relative') {
+        const items = pick(relativeBank, currentLevel === 'beginner' ? 3 : 4);
+        currentExercise = { type: 'relative', data: items };
+        content.innerHTML = items.map((r, i) => `
+          <div class="exercise-box">
+            <p>${r.sentence.replace('_____', '________')}</p>
+            <div class="options">
+              ${r.options.map(o => `<label><input type="radio" name="pracR${i}" value="${o}"> ${o}</label>`).join('')}
+            </div>
+          </div>
+        `).join('');
+      }
+      else if (currentTopic === 'make') {
+        const items = pick(makeBank, currentLevel === 'beginner' ? 2 : 3);
+        currentExercise = { type: 'make', data: items };
+        content.innerHTML = items.map((m, i) => `
+          <div class="exercise-box">
+            <p>${m.prompt}</p>
+            <input type="text" id="pracM${i}" placeholder="Your rewritten sentence...">
+          </div>
+        `).join('');
+      }
+    }
+
+    document.getElementById('checkPractice').addEventListener('click', () => {
+      if (!currentExercise) return;
+      const fb = document.getElementById('practiceFeedback');
+      let messages = [];
+      let allCorrect = true;
+      let thisCorrect = 0;
+      let thisTotal = 0;
+
+      if (currentExercise.type === 'reading') {
+        currentExercise.data.questions.forEach((q, i) => {
+          thisTotal++;
+          const u = document.getElementById('pracQ' + i).value;
+          if (approxMatch(u, q.a)) {
+            thisCorrect++;
+            messages.push(`Q${i+1}: Correct`);
+          } else {
+            allCorrect = false;
+            messages.push(`Q${i+1}: Model answer → “${q.a}”`);
+          }
+        });
+      }
+      else if (currentExercise.type === 'truefalse') {
+        thisTotal = 1;
+        const u = document.querySelector('input[name="pracTF"]:checked')?.value;
+        const corr = document.getElementById('pracCorr').value;
+        const d = currentExercise.data;
+        if (u === String(d.correct)) {
+          if (d.correct || corr.length > 8) {
+            thisCorrect = 1;
+            messages.push('Correct!');
+            if (!d.correct) messages.push('Good correction attempt.');
+          } else {
+            allCorrect = false;
+            messages.push(`You correctly said False, but a better correction is: ${d.correction}`);
+          }
+        } else {
+          allCorrect = false;
+          messages.push(`The statement is ${d.correct ? 'TRUE' : 'FALSE'}.`);
+          if (!d.correct) messages.push(d.correction);
+        }
+      }
+      else if (currentExercise.type === 'vocabulary') {
+        currentExercise.data.forEach((v, i) => {
+          thisTotal++;
+          const u = document.getElementById('pracV' + i).value;
+          if (approxMatch(u, v.def) || normalize(u).length > 10) {
+            thisCorrect++;
+            messages.push(`${v.term}: Accepted`);
+          } else {
+            allCorrect = false;
+            messages.push(`${v.term}: “${v.def}”`);
+          }
+        });
+      }
+      else if (currentExercise.type === 'passive') {
+        currentExercise.data.forEach((p, i) => {
+          thisTotal++;
+          const u = document.getElementById('pracP' + i).value;
+          if (approxMatch(u, p.passive)) {
+            thisCorrect++;
+            messages.push(`${p.tense}: Correct`);
+          } else {
+            allCorrect = false;
+            messages.push(`${p.tense}: “${p.passive}”`);
+          }
+        });
+      }
+      else if (currentExercise.type === 'relative') {
+        currentExercise.data.forEach((r, i) => {
+          thisTotal++;
+          const u = document.querySelector(`input[name="pracR${i}"]:checked`)?.value;
+          if (u && (r.correct.includes(u) || u === r.correct)) {
+            thisCorrect++;
+            messages.push(`Sentence ${i+1}: Correct`);
+          } else {
+            allCorrect = false;
+            messages.push(`Sentence ${i+1}: “${r.correct}” (${r.note})`);
+          }
+        });
+      }
+      else if (currentExercise.type === 'make') {
+        currentExercise.data.forEach((m, i) => {
+          thisTotal++;
+          const u = document.getElementById('pracM' + i).value;
+          if (normalize(u).includes('made') && u.length > 10) {
+            thisCorrect++;
+            messages.push(`Sentence ${i+1}: Good (model: “${m.answer}”)`);
+          } else {
+            allCorrect = false;
+            messages.push(`Sentence ${i+1}: Model → “${m.answer}”`);
+          }
+        });
+      }
+
+      practiceScore.correct += thisCorrect;
+      practiceScore.total += thisTotal;
+      updatePracticeScore();
+
+      fb.className = 'feedback ' + (allCorrect ? 'correct' : 'incorrect');
+      fb.innerHTML = messages.map(m => `• ${m}`).join('<br>');
+      fb.style.display = 'block';
+      document.getElementById('checkPractice').style.display = 'none';
+    });
+
+    document.getElementById('nextPractice').addEventListener('click', () => {
+      loadPracticeExercise();
+    });
+
+    // ========== SIMULATION ==========
+    let simQuestions = [];
+    let simIndex = 0;
+    let simAnswers = [];
+    let simStarted = false;
+
+    function startSimulation() {
+      simIndex = 0;
+      simAnswers = [];
+      simStarted = true;
+      document.getElementById('simFinalResult').classList.add('hidden');
+      document.getElementById('simNext').classList.remove('hidden');
+      document.getElementById('simFinish').classList.add('hidden');
+      document.getElementById('simTimer').textContent = 'In progress';
+
+      // Build a mixed set of 12 questions
+      simQuestions = [];
+      // 2 reading questions from one text
+      const rt = pick(readingTexts, 1)[0];
+      simQuestions.push({ type: 'reading-text', data: rt });
+      rt.questions.slice(0, 2).forEach(q => simQuestions.push({ type: 'reading-q', data: q, textTitle: rt.title }));
+      // 2 true/false
+      pick(trueFalseBank, 2).forEach(tf => simQuestions.push({ type: 'tf', data: tf }));
+      // 2 vocab
+      pick(vocabBank, 2).forEach(v => simQuestions.push({ type: 'vocab', data: v }));
+      // 2 passive
+      pick(passiveBank, 2).forEach(p => simQuestions.push({ type: 'passive', data: p }));
+      // 2 relative
+      pick(relativeBank, 2).forEach(r => simQuestions.push({ type: 'relative', data: r }));
+      // 1 make
+      pick(makeBank, 1).forEach(m => simQuestions.push({ type: 'make', data: m }));
+      // 1 open
+      simQuestions.push({
+        type: 'open',
+        data: {
+          prompt: 'In your own words, explain how the CPU works and name at least three factors that influence its performance. Write 80–120 words.'
+        }
+      });
+
+      renderSimQuestion();
+    }
+
+    function renderSimQuestion() {
+      const q = simQuestions[simIndex];
+      const content = document.getElementById('simulationContent');
+      document.getElementById('simProgressText').textContent = `Question ${simIndex + 1} of ${simQuestions.length}`;
+
+      if (q.type === 'reading-text') {
+        content.innerHTML = `
+          <div class="reading-text"><strong>${q.data.title}</strong><br><br>${q.data.text}</div>
+          <p style="color:var(--muted);">Read the text carefully. The next questions will refer to it.</p>
+        `;
+      }
+      else if (q.type === 'reading-q') {
+        content.innerHTML = `
+          <p><strong>Based on the text “${q.textTitle}”:</strong></p>
+          <p>${q.data.q}</p>
+          <textarea id="simAns" rows="2" placeholder="Your answer..."></textarea>
+        `;
+      }
+      else if (q.type === 'tf') {
+        content.innerHTML = `
+          <p>${q.data.statement}</p>
+          <div class="options">
+            <label><input type="radio" name="simTF" value="true"> True</label>
+            <label><input type="radio" name="simTF" value="false"> False</label>
+          </div>
+          <p style="margin-top:0.8rem; color:var(--muted);">If false, correct it:</p>
+          <textarea id="simAns" rows="2" placeholder="Correction..."></textarea>
+        `;
+      }
+      else if (q.type === 'vocab') {
+        content.innerHTML = `
+          <p>Define the term: <strong>${q.data.term}</strong></p>
+          <textarea id="simAns" rows="2" placeholder="Definition..."></textarea>
+        `;
+      }
+      else if (q.type === 'passive') {
+        content.innerHTML = `
+          <p><em>${q.data.tense}</em></p>
+          <p>Rewrite in the passive voice:</p>
+          <p><em>${q.data.active}</em></p>
+          <textarea id="simAns" rows="2" placeholder="Passive sentence..."></textarea>
+        `;
+      }
+      else if (q.type === 'relative') {
+        content.innerHTML = `
+          <p>${q.data.sentence.replace('_____', '________')}</p>
+          <div class="options">
+            ${q.data.options.map(o => `<label><input type="radio" name="simRel" value="${o}"> ${o}</label>`).join('')}
+          </div>
+        `;
+      }
+      else if (q.type === 'make') {
+        content.innerHTML = `
+          <p>${q.data.prompt}</p>
+          <textarea id="simAns" rows="2" placeholder="Your sentence..."></textarea>
+        `;
+      }
+      else if (q.type === 'open') {
+        content.innerHTML = `
+          <p>${q.data.prompt}</p>
+          <textarea id="simAns" rows="6" placeholder="Write your answer here (80–120 words)..."></textarea>
+        `;
+      }
+
+      if (simIndex === simQuestions.length - 1) {
+        document.getElementById('simNext').classList.add('hidden');
+        document.getElementById('simFinish').classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('simNext').addEventListener('click', () => {
+      // save answer
+      const q = simQuestions[simIndex];
+      let ans = '';
+      if (q.type === 'tf') {
+        ans = {
+          choice: document.querySelector('input[name="simTF"]:checked')?.value,
+          corr: document.getElementById('simAns')?.value || ''
+        };
+      } else if (q.type === 'relative') {
+        ans = document.querySelector('input[name="simRel"]:checked')?.value || '';
+      } else if (q.type !== 'reading-text') {
+        ans = document.getElementById('simAns')?.value || '';
+      }
+      simAnswers[simIndex] = ans;
+      simIndex++;
+      renderSimQuestion();
+    });
+
+    document.getElementById('simFinish').addEventListener('click', () => {
+      // save last answer
+      const q = simQuestions[simIndex];
+      let ans = '';
+      if (q.type === 'tf') {
+        ans = {
+          choice: document.querySelector('input[name="simTF"]:checked')?.value,
+          corr: document.getElementById('simAns')?.value || ''
+        };
+      } else if (q.type === 'relative') {
+        ans = document.querySelector('input[name="simRel"]:checked')?.value || '';
+      } else if (q.type !== 'reading-text') {
+        ans = document.getElementById('simAns')?.value || '';
+      }
+      simAnswers[simIndex] = ans;
+
+      // Grade
+      let points = 0;
+      let maxPoints = 0;
+      let details = [];
+
+      simQuestions.forEach((q, i) => {
+        if (q.type === 'reading-text') return; // no points
+        maxPoints += (q.type === 'open' ? 15 : 8);
+        const a = simAnswers[i];
+
+        if (q.type === 'reading-q') {
+          if (approxMatch(a, q.data.a)) { points += 8; details.push(`Reading Q: +8`); }
+          else details.push(`Reading Q: 0 (expected ~ “${q.data.a}”)`);
+        }
+        else if (q.type === 'tf') {
+          if (a && a.choice === String(q.data.correct)) {
+            if (q.data.correct || (a.corr && a.corr.length > 8)) {
+              points += 8; details.push(`T/F: +8`);
+            } else {
+              points += 4; details.push(`T/F: +4 (correct choice, weak correction)`);
+            }
+          } else details.push(`T/F: 0`);
+        }
+        else if (q.type === 'vocab') {
+          if (a && (approxMatch(a, q.data.def) || a.length > 12)) {
+            points += 8; details.push(`Vocab (${q.data.term}): +8`);
+          } else details.push(`Vocab (${q.data.term}): 0`);
+        }
+        else if (q.type === 'passive') {
+          if (a && approxMatch(a, q.data.passive)) {
+            points += 8; details.push(`Passive: +8`);
+          } else details.push(`Passive: 0 (model: “${q.data.passive}”)`);
+        }
+        else if (q.type === 'relative') {
+          if (a && (q.data.correct.includes(a) || a === q.data.correct)) {
+            points += 8; details.push(`Relative: +8`);
+          } else details.push(`Relative: 0 (correct: ${q.data.correct})`);
+        }
+        else if (q.type === 'make') {
+          if (a && normalize(a).includes('made') && a.length > 12) {
+            points += 8; details.push(`Make structure: +8`);
+          } else details.push(`Make structure: 0`);
+        }
+        else if (q.type === 'open') {
+          const words = (a || '').trim().split(/\s+/).filter(Boolean).length;
+          let p = 0;
+          if (words >= 60) p += 5;
+          if (normalize(a).includes('fetch') || normalize(a).includes('cycle') || normalize(a).includes('alu') || normalize(a).includes('control unit')) p += 5;
+          if (normalize(a).includes('clock') || normalize(a).includes('core') || normalize(a).includes('cache')) p += 5;
+          points += Math.min(15, p);
+          details.push(`Open question: +${Math.min(15, p)} (word count: ${words})`);
+        }
+      });
+
+      const finalScore = Math.round((points / maxPoints) * 100);
+      const resultDiv = document.getElementById('simFinalResult');
+      resultDiv.classList.remove('hidden');
+      resultDiv.innerHTML = `
+        <div class="card" style="margin-top:1.5rem; border-color: ${finalScore >= 70 ? 'var(--accent2)' : finalScore >= 50 ? 'var(--warning)' : 'var(--danger)'};">
+          <h2 style="color:${finalScore >= 70 ? 'var(--accent2)' : finalScore >= 50 ? 'var(--warning)' : 'var(--danger)'}">
+            Final Score: ${finalScore}/100
+          </h2>
+          <p style="margin:0.8rem 0;">Points obtained: ${points} / ${maxPoints}</p>
+          <h3>Breakdown</h3>
+          <ul style="padding-left:1.2rem; color:var(--muted); font-size:0.92rem;">
+            ${details.map(d => `<li>${d}</li>`).join('')}
+          </ul>
+          <h3 style="margin-top:1.2rem;">Recommendations</h3>
+          <p style="color:var(--muted);">
+            ${finalScore >= 80 ? 'Excellent work! You are ready for the verification. Keep practising the open question for fluency.' :
+              finalScore >= 60 ? 'Good level. Focus on the areas where you lost points (check the breakdown). Repeat Passive Voice and Relative Clauses.' :
+              'You need more practice. Start again from the Diagnostic, then work systematically on Vocabulary and Passive Voice before attempting another full simulation.'}
+          </p>
+          <div class="btn-row">
+            <button class="primary" onclick="startSimulation()">Retry Simulation</button>
+            <button class="secondary" onclick="showView('home')">Back to Home</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('simNext').classList.add('hidden');
+      document.getElementById('simFinish').classList.add('hidden');
+      document.getElementById('simTimer').textContent = 'Completed';
+    });
+  </script>
 </body>
 </html>
-
-
